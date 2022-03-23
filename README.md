@@ -1,1 +1,3 @@
-# __challenge_sw
+# __challenge_sw 🧪
+
+Application challenge
