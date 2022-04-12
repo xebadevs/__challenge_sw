@@ -1,6 +1,7 @@
 // * Automatic compiling from the exact path: sass --watch wrapper.scss styles.css
 
 @use 'main';
+@use 'cards';
 @use 'color';
 
 body {

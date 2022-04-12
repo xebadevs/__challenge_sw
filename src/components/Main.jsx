@@ -1,4 +1,5 @@
 import React from 'react'
+import Cards from './Cards'
 
 export default function main() {
     return (
@@ -7,10 +8,11 @@ export default function main() {
                 <h1>Product List</h1>
                 <div>
                     <button>ADD</button>
-                    <button>MASS DELETE</button>
+                    <button id='delete-product-btn'>MASS DELETE</button>
                 </div>
             </section>    
             <hr />
+            <Cards />
         </div>
     )
 }
