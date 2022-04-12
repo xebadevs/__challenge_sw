@@ -6,6 +6,7 @@ export default function AddProduct() {
 
     const navigate = useNavigate()
 
+
     return (
         <div className='container'>
             <section className='title-section'>
