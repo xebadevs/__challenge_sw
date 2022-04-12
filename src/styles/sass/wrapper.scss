@@ -1,9 +1,18 @@
-// * From the exact path:
-// * sass --watch wrapper.scss styles.css
+// * Automatic compiling from the exact path: sass --watch wrapper.scss styles.css
 
+@use 'main';
 @use 'color';
 
 body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
     background-color: color.$background-color;
     color: color.$text-color;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
 }
