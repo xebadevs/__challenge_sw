@@ -1,8 +1,13 @@
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Main from './components/Main';
 
 function App() {
   return (
-    <h1>Scandiweb Challenge</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
