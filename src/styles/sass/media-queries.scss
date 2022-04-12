@@ -1,0 +1,15 @@
+$breakpoints: (
+    sm : 540px,
+    md : 768px,
+    lg : 1024px
+);
+
+@mixin mq($breakpoint){
+    @if map-has-key($map: $braekpoints, $key: $breakpoint){
+        @media screen and (min-width: map-get($braekpoints, $breakpoint)) {
+            @content;
+        }
+    }else{
+        @warn "The value '#{ $brekpoint }' hasn't be declared as breakpoint";
+    }
+}

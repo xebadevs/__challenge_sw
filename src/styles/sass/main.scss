@@ -1,0 +1,9 @@
+@use 'media-queries';
+
+.main-container {
+    // code
+
+    @include mq(sm){
+        // changes on 540px resolution
+    }
+}
