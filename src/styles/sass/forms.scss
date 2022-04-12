@@ -1,0 +1,14 @@
+.form-main {
+
+
+    div {
+        display: flex;
+        width: 300px;
+        justify-content: space-between;
+        margin: 20px 0;
+
+        label {
+            line-height: 20px;
+        }
+    }
+}
