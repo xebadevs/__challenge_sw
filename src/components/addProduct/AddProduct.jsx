@@ -1,4 +1,4 @@
-import Form from "./Form"
+import Forms from "./Form"
 import { useNavigate } from "react-router-dom"
 
 
@@ -6,6 +6,10 @@ export default function AddProduct() {
 
     const navigate = useNavigate()
 
+    const sendForm = (e) => {
+        e.preventDefault()
+
+    }
 
     return (
         <form id="product_form" className="form-main">
@@ -13,12 +17,12 @@ export default function AddProduct() {
                 <section className='title-section'>
                     <h1>Product Add</h1>
                     <div>
-                        <button>Save</button>
+                        <button type="submit" onClick={sendForm}>Save</button>
                         <button id='delete-product-btn' onClick={() => navigate('/')}>Cancel</button>
                     </div>
                 </section>    
                 <hr />
-                <Form />
+                <Forms />
             </div>
         </form>
     )
