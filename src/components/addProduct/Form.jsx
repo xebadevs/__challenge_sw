@@ -6,16 +6,15 @@ export default function Form() {
 
     return (
         <>
-            <form id='product_form' className='form-main'>
-                <div>
+                <div className="form-li">
                     <label htmlFor="sku">SKU</label>
                     <input type="text" id='sku' />
                 </div>
-                <div>
+                <div className="form-li">
                     <label htmlFor="name">Name</label>
                     <input type="text" id='name' />
                 </div>
-                <div>
+                <div className="form-li">
                     <label htmlFor="price">Price ($)</label>
                     <input type="number" id='price' />
                 </div>
@@ -31,7 +30,7 @@ export default function Form() {
 
                 {typeSwitcher === 'DVD' &&
                 <>
-                    <div>
+                    <div className="form-li">
                         <label htmlFor="size">Size (MB)</label>
                         <input type="number" id='size' />
                     </div>
@@ -41,15 +40,15 @@ export default function Form() {
 
                 {typeSwitcher === 'Furniture' &&
                 <>
-                    <div>
+                    <div className="form-li">
                         <label htmlFor="height">Height (CM)</label>
                         <input type="number" id='height' />
                     </div>
-                    <div>
+                    <div className="form-li">
                         <label htmlFor="width">Width (CM)</label>
                         <input type="number" id='width' />
                     </div>
-                    <div>
+                    <div className="form-li">
                         <label htmlFor="length">Length (CM)</label>
                         <input type="number" id='length' />
                     </div>
@@ -59,14 +58,13 @@ export default function Form() {
 
                 {typeSwitcher === 'Book' &&
                 <>
-                    <div>
+                    <div className="form-li">
                         <label htmlFor="weight">Weight (KG)</label>
                         <input type="number" id='weight' />
                     </div>
                         <p>Please, provide weight</p>
                 </>
                 }
-            </form>
         </>
     )
 }

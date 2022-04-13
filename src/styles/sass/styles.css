@@ -22,13 +22,13 @@
   text-align: center;
 }
 
-.form-main div {
+.form-main .form-li {
   display: flex;
   width: 300px;
   justify-content: space-between;
   margin: 20px 0;
 }
-.form-main div label {
+.form-main .form-li label {
   line-height: 20px;
 }
 
