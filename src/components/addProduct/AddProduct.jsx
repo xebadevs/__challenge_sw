@@ -1,9 +1,7 @@
 import Forms from "./Form"
 import { useNavigate } from "react-router-dom"
 
-
 export default function AddProduct() {
-
     const navigate = useNavigate()
 
     const sendForm = (e) => {
