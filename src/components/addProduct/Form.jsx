@@ -18,15 +18,19 @@ export default function Form() {
                     <label htmlFor="price">Price ($)</label>
                     <input type="number" id='price' />
                 </div>
-                <select id='productType' value={typeSwitcher}
-                    onChange={(e) => {
-                        const selectedType = e.target.value
-                        setTypeSwitcher(selectedType)
-                    }}>
-                    <option id='DVD'>DVD</option>
-                    <option id='Furniture'>Furniture</option>
-                    <option id='Book'>Book</option>
-                </select>
+                <div className="form-li">
+                    <label>Type Switcher</label>
+                    <select id='productType' value={typeSwitcher}
+                        onChange={(e) => {
+                            const selectedType = e.target.value
+                            setTypeSwitcher(selectedType)
+                        }}>
+                        <option id='DVD'>DVD</option>
+                        <option id='Furniture'>Furniture</option>
+                        <option id='Book'>Book</option>
+                    </select>
+                </div>
+
 
                 {typeSwitcher === 'DVD' &&
                 <>
@@ -52,7 +56,7 @@ export default function Form() {
                         <label htmlFor="length">Length (CM)</label>
                         <input type="number" id='length' />
                     </div>
-                        <p>Please, provide heigth, width and length</p>
+                        <p>Please, provide dimensions</p>
                 </>
                 }
 
