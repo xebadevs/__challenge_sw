@@ -22,6 +22,9 @@
   text-align: center;
 }
 
+.form-main {
+  display: flex;
+}
 .form-main .form-li {
   display: flex;
   width: 300px;
@@ -30,6 +33,11 @@
 }
 .form-main .form-li label {
   line-height: 20px;
+}
+.form-main .form-error {
+  width: 300px;
+  text-align: center;
+  color: orange;
 }
 
 body {

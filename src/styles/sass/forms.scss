@@ -1,4 +1,6 @@
 .form-main {
+    display: flex;
+
 
     .form-li {
         display: flex;
@@ -9,5 +11,11 @@
         label {
             line-height: 20px;
         }
+    }
+
+    .form-error {
+        width: 300px;
+        text-align: center;
+        color: orange;
     }
 }

@@ -1,38 +1,60 @@
 import { useState } from "react"
 
 export default function Forms() {
+    const [inputValue, setInputValue] = useState({
+        sku: '',
+        name: '',
+        price: ''
+    })
+    // const [skuValue, setSkuValue] = useState('')
+    // const [nameValue, setNameValue] = useState('')
+    // const [priceValue, setPriceValue] = useState('')
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
-    const [skuValue, setSkuValue] = useState('')
-    const [nameValue, setNameValue] = useState('')
-    const [priceValue, setPriceValue] = useState('')
     const [sizeValue, setSizeValue] = useState('')
     const [heightValue, setHeightValue] = useState('')
     const [widthValue, setWidthValue] = useState('')
     const [lengthValue, setLengthValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
+    const [inputError, setInputError] = useState({message: 'Please, submit required data', condition: false});
 
-    const setSkuValueFn = (val) => {if(val !== ''){setSkuValue(val)}else{}}
-    const setNameValueFn = (val) => {if(val !== ''){setNameValue(val)}}
-    const setPriceValueFn = (val) => {if(val !== ''){setPriceValue(val)}}
+
+    const handleInputChange = (e) => {
+        console.log(e.target.value)
+        setInputValue({
+            ...inputValue,
+            [e.target.name] : e.target.value
+        })
+        setInputError({condition: false})            
+        if(e.target.value === ''){
+            setInputError({condition: true})            
+        }
+    }
+
+    // const setNameSkuFn = (val) => {if(val !== ''){setSkuValue(val)}}
+    // const setNameValueFn = (val) => {if(val !== ''){setNameValue(val)}}
+    // const setPriceValueFn = (val) => {if(val !== ''){setPriceValue(val)}}
     const setSizeValueFn = (val) => {if(val !== ''){setSizeValue(val)}}
     const setHeightValueFn = (val) => {if(val !== ''){setHeightValue(val)}}
     const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
     const setLengthValueFn = (val) => {if(val !== ''){setLengthValue(val)}}
     const setWeightValueFn = (val) => {if(val !== ''){setWeightValue(val)}}
 
+
+
     return (
     <>
+        {inputError.condition === true && <h1>Algo</h1>}
         <div className="form-li">
             <label htmlFor="sku">SKU</label>
-            <input type="text" id='sku' onChange={(e) => setSkuValueFn(e.target.value)} value={skuValue} />
+            <input type="text" id='sku' name="sku" onChange={handleInputChange} value={inputValue.sku} error="closting" />
         </div>
         <div className="form-li">
             <label htmlFor="name">Name</label>
-            <input type="text" id='name' onChange={(e) => setNameValueFn(e.target.value)} value={nameValue} />
+            <input type="text" id='name' name="name" onChange={handleInputChange} value={inputValue.name} />
         </div>
         <div className="form-li">
             <label htmlFor="price">Price ($)</label>
-            <input type="number" id='price' onChange={(e) => setPriceValueFn(e.target.value)} value={priceValue} />
+            <input type="number" id='price' name="price" onChange={handleInputChange} value={inputValue.price} />
         </div>
         <div className="form-li">
             <label>Type Switcher</label>
