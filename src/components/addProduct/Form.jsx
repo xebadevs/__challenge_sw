@@ -9,7 +9,6 @@ export default function Forms() {
     })
 
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
-    const [sizeValue, setSizeValue] = useState('')
     const [heightValue, setHeightValue] = useState('')
     const [widthValue, setWidthValue] = useState('')
     const [lengthValue, setLengthValue] = useState('')
@@ -18,7 +17,8 @@ export default function Forms() {
     const [errorMsg, setErrorMsg] = useState(false)
 
     const [numValue, setNumValue] = useState({
-        size: ''
+        size: '',
+        weight: ''
     })
 
 
@@ -34,7 +34,6 @@ export default function Forms() {
     }
 
 
-    const setSizeValueFn = (val) => {if(val !== ''){setSizeValue(val)}}
     const setHeightValueFn = (val) => {if(val !== ''){setHeightValue(val)}}
     const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
     const setLengthValueFn = (val) => {if(val !== ''){setLengthValue(val)}}
@@ -118,7 +117,7 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="weight">Weight (KG)</label>
-                <input type="number" id='weight' name="weight" onChange={setWeight} value={weightValue} />
+                <input type="number" id='weight' name="weight" onChange={setNumber} value={numValue.weight} />
             </div>
         </>
         }
