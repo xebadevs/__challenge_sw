@@ -15,8 +15,11 @@ export default function Forms() {
     const [lengthValue, setLengthValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [inputError, setInputError] = useState(false);
-    const [secInputError, setSecInputError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(false)
+
+    const [numValue, setNumValue] = useState({
+        size: ''
+    })
 
 
     const handleInputChange = (e) => {
@@ -36,7 +39,7 @@ export default function Forms() {
     const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
     const setLengthValueFn = (val) => {if(val !== ''){setLengthValue(val)}}
     
-    const setWeightValueFn = (e) => {
+    const setWeight = (e) => {
         setWeightValue(e.target.value)
         setErrorMsg(false)
 
@@ -45,8 +48,16 @@ export default function Forms() {
         }
     }
 
-    console.log(weightValue)
-
+    const setNumber = (e) => {
+        setNumValue({
+            ...numValue,
+            [e.target.name] : e.target.value
+        })
+        setErrorMsg(false)
+        if(e.target.value === ''){
+            setErrorMsg(true)
+        }
+    }
 
     return (
     <>
@@ -81,7 +92,7 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="size">Size (MB)</label>
-                <input type="number" id='size' name="size" onChange={setSizeValueFn} value={sizeValue}/>
+                <input type="number" id='size' name="size" onChange={setNumber} value={numValue.size}/>
             </div>
         </>
         }
@@ -107,7 +118,7 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="weight">Weight (KG)</label>
-                <input type="number" id='weight' name="weight" onChange={setWeightValueFn} value={weightValue} />
+                <input type="number" id='weight' name="weight" onChange={setWeight} value={weightValue} />
             </div>
         </>
         }
