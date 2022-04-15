@@ -13,7 +13,8 @@ export default function Forms() {
         weight: '',
         height: '',
         width: '',
-        length: ''
+        length: '',
+        error: 'Please, provide the data of indicated type'
     })
     
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
@@ -105,7 +106,7 @@ export default function Forms() {
             </div>
         </>
         }
-        {errorMsg && <p className="form-error"> Please, provide the data of indicated type </p>}
+        {errorMsg && <p className="form-error"> {numValue.error} </p>}
     </>
     )
 }
