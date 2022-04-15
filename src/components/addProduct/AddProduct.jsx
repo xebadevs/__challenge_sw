@@ -8,6 +8,8 @@ export default function AddProduct() {
         sku: '',
         name: '',
         price: '',
+        reg_sku: /^[a-zA-Z0-9]{4,20}$/,
+        reg_name: /^[a-zA-Z0-9\s]{4,20}$/,
         error: 'Please, submit required data',
     })
 
@@ -46,14 +48,25 @@ export default function AddProduct() {
         }
     }
 
-    const sendForm = (e) => {
-        e.preventDefault()
+    const validate = () => {
+        if(
+            inputValue.reg_sku.test(inputValue.sku) &&
+            inputValue.reg_name.test(inputValue.name) &&
+            inputValue.price !== ''
+            ){
+                alert('todo viento')
+        }else{
+            alert('todo mal')
+        }
     }
 
-    console.log(inputValue.sku)
+    const sendForm = (e) => {
+        e.preventDefault()
+        validate()
+    }
 
     return (
-        <form id="product_form" className="form-main">
+        <form id="product_form" className="form-main" onSubmit={sendForm}>
             <div className='container'>
                 <section className='title-section'>
                     <h1>Product Add</h1>
