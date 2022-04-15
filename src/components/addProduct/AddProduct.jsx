@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 export default function AddProduct() {
     const navigate = useNavigate()
 
+    // * Main Form
     const [inputValue, setInputValue] = useState({
         sku: '',
         name: '',
@@ -13,6 +14,7 @@ export default function AddProduct() {
         error: 'Please, submit required data',
     })
 
+    // * Sub Forms
     const [numValue, setNumValue] = useState({
         size: '',
         weight: '',
@@ -28,6 +30,7 @@ export default function AddProduct() {
     const [errorMsg, setErrorMsg] = useState(false);
     const [formValid, setFormValid] = useState({formUpper: false, formLower: false})
 
+    // * Main Form Inputs
     const handleInputChange = (e) => {
         setInputValue({
             ...inputValue,
@@ -39,6 +42,7 @@ export default function AddProduct() {
         }
     }
 
+    // * Sub Forms Inputs
     const setNumber = (e) => {
         setNumValue({
             ...numValue,
@@ -51,14 +55,23 @@ export default function AddProduct() {
     }
 
     const validate = () => {
+        // * Main Form Validation
         if(
         inputValue.reg_sku.test(inputValue.sku) &&
         inputValue.reg_name.test(inputValue.name) &&
         inputValue.price !== ''
         ){
-            setFormValid({...formValid, formUpper: true})
+            setFormValid({formUpper: true})
+
+            // * Sub Forms Validation
+            if(typeSwitcher === 'DVD' && numValue.size !== ''){
+                setFormValid({formLower: true})
+            }else{
+                setFormValid({formLower: false})
+                setErrorMsg(true)
+            }
         }else{
-            setFormValid({...formValid, formUpper: false})
+            setFormValid({formUpper: false})
             setInputError(true)
         }
     }
@@ -69,10 +82,12 @@ export default function AddProduct() {
     }
 
     useEffect(() => {
-        if(formValid.formUpper){
+        console.log(formValid.formUpper)
+        if(formValid.formLower){
             navigate('/')
         }
     })
+
 
     return (
         <form id="product_form" className="form-main" onSubmit={sendForm}>
