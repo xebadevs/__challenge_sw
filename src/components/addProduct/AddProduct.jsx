@@ -3,8 +3,13 @@ import { useNavigate } from "react-router-dom"
 
 export default function AddProduct() {
     const navigate = useNavigate()
+    const [typeSwitcher, setTypeSwitcher] = useState('DVD')
+    const [inputError, setInputError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false);
+    const [formValid, setFormValid] = useState({formUpper: false, formLower: false})
 
-    // * Main Form
+
+    // * -------------------- Main Form -------------------- //
     const [inputValue, setInputValue] = useState({
         sku: '',
         name: '',
@@ -13,6 +18,7 @@ export default function AddProduct() {
         reg_name: /^[a-zA-Z0-9\s]{4,20}$/,
         error: 'Please, submit required data',
     })
+
 
     // * Sub Forms
     const [numValue, setNumValue] = useState({
@@ -24,13 +30,9 @@ export default function AddProduct() {
         reg_num: /^[0-9\s]{1,5}$/,
         error: 'Please, provide the data of indicated type'
     })
-    
-    const [typeSwitcher, setTypeSwitcher] = useState('DVD')
-    const [inputError, setInputError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(false);
-    const [formValid, setFormValid] = useState({formUpper: false, formLower: false})
 
-    // * Main Form Inputs
+
+    // * -------------------- Main Form Inputs -------------------- //
     const handleInputChange = (e) => {
         setInputValue({
             ...inputValue,
@@ -42,7 +44,8 @@ export default function AddProduct() {
         }
     }
 
-    // * Sub Forms Inputs
+
+    // * -------------------- Sub Forms Inputs -------------------- //
     const setNumber = (e) => {
         setNumValue({
             ...numValue,
@@ -54,8 +57,9 @@ export default function AddProduct() {
         }
     }
 
+
     const validate = () => {
-        // * Main Form Validation
+        // * -------------------- Main Form Validation -------------------- //
         if(
         inputValue.reg_sku.test(inputValue.sku) &&
         inputValue.reg_name.test(inputValue.name) &&
@@ -63,7 +67,7 @@ export default function AddProduct() {
         ){
             setFormValid({formUpper: true})
 
-            // * Sub Forms Validation
+            // * -------------------- Sub Forms Validation -------------------- //
             if(typeSwitcher === 'DVD' && numValue.size !== ''){
                 setFormValid({formLower: true})
             }else if(typeSwitcher === 'Furniture' &&
@@ -81,10 +85,12 @@ export default function AddProduct() {
         }
     }
 
+
     const sendForm = (e) => {
         e.preventDefault()
         validate()
     }
+
 
     useEffect(() => {
         if(formValid.formLower){
@@ -105,6 +111,8 @@ export default function AddProduct() {
                 </section>    
                 <hr />
 
+
+                {/* -------------------- MAIN FORM -------------------- */}
                 <>
                     <div className="form-li">
                         <label htmlFor="sku">SKU</label>
@@ -120,6 +128,8 @@ export default function AddProduct() {
                     </div>
                     {inputError && <p className="form-error">{inputValue.error}</p>}
                     
+
+                    {/* -------------------- TYPE SWITCHER -------------------- */}
                     <div className="form-li">
                         <label>Type Switcher</label>
                         <select id='productType' value={typeSwitcher}
@@ -133,6 +143,8 @@ export default function AddProduct() {
                         </select>
                     </div>
 
+
+                    {/* -------------------- CATEGORIES -------------------- */}
                     {typeSwitcher === 'DVD' &&
                     <>
                         <div className="form-li">
