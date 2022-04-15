@@ -4,35 +4,31 @@ export default function Forms() {
     const [inputValue, setInputValue] = useState({
         sku: '',
         name: '',
-        price: ''
+        price: '',
+        error: 'Please, submit required data'
     })
-    // const [skuValue, setSkuValue] = useState('')
-    // const [nameValue, setNameValue] = useState('')
-    // const [priceValue, setPriceValue] = useState('')
+
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
     const [sizeValue, setSizeValue] = useState('')
     const [heightValue, setHeightValue] = useState('')
     const [widthValue, setWidthValue] = useState('')
     const [lengthValue, setLengthValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
-    const [inputError, setInputError] = useState({message: 'Please, submit required data', condition: false});
+    const [inputError, setInputError] = useState(false);
 
 
     const handleInputChange = (e) => {
-        console.log(e.target.value)
         setInputValue({
             ...inputValue,
             [e.target.name] : e.target.value
         })
-        setInputError({condition: false})            
+        setInputError(false)   
+
         if(e.target.value === ''){
-            setInputError({condition: true})            
+            setInputError(true)
         }
     }
 
-    // const setNameSkuFn = (val) => {if(val !== ''){setSkuValue(val)}}
-    // const setNameValueFn = (val) => {if(val !== ''){setNameValue(val)}}
-    // const setPriceValueFn = (val) => {if(val !== ''){setPriceValue(val)}}
     const setSizeValueFn = (val) => {if(val !== ''){setSizeValue(val)}}
     const setHeightValueFn = (val) => {if(val !== ''){setHeightValue(val)}}
     const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
@@ -43,10 +39,10 @@ export default function Forms() {
 
     return (
     <>
-        {inputError.condition === true && <h1>Algo</h1>}
+        {/* <h1>{inputError.message}</h1> */}
         <div className="form-li">
             <label htmlFor="sku">SKU</label>
-            <input type="text" id='sku' name="sku" onChange={handleInputChange} value={inputValue.sku} error="closting" />
+            <input type="text" id='sku' name="sku" onChange={handleInputChange} value={inputValue.sku} />
         </div>
         <div className="form-li">
             <label htmlFor="name">Name</label>
@@ -56,6 +52,8 @@ export default function Forms() {
             <label htmlFor="price">Price ($)</label>
             <input type="number" id='price' name="price" onChange={handleInputChange} value={inputValue.price} />
         </div>
+        {inputError && <p className="form-error">{inputValue.error}</p>}
+        
         <div className="form-li">
             <label>Type Switcher</label>
             <select id='productType' value={typeSwitcher}
