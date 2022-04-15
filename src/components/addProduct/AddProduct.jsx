@@ -66,7 +66,12 @@ export default function AddProduct() {
             // * Sub Forms Validation
             if(typeSwitcher === 'DVD' && numValue.size !== ''){
                 setFormValid({formLower: true})
-            }else{
+            }else if(typeSwitcher === 'Furniture' &&
+            (numValue.height && numValue.width && numValue.length) !== '' ){
+                setFormValid({formLower: true})
+            }else if(typeSwitcher === 'Book' && numValue.weight !== ''){
+                setFormValid({formLower: true})
+            } else{
                 setFormValid({formLower: false})
                 setErrorMsg(true)
             }
@@ -82,7 +87,6 @@ export default function AddProduct() {
     }
 
     useEffect(() => {
-        console.log(formValid.formUpper)
         if(formValid.formLower){
             navigate('/')
         }
