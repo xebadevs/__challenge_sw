@@ -5,7 +5,7 @@ export default function Forms() {
         sku: '',
         name: '',
         price: '',
-        error: 'Please, submit required data'
+        error: 'Please, submit required data',
     })
 
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
@@ -15,6 +15,8 @@ export default function Forms() {
     const [lengthValue, setLengthValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [inputError, setInputError] = useState(false);
+    const [secInputError, setSecInputError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false)
 
 
     const handleInputChange = (e) => {
@@ -23,23 +25,31 @@ export default function Forms() {
             [e.target.name] : e.target.value
         })
         setInputError(false)   
-
         if(e.target.value === ''){
             setInputError(true)
         }
     }
 
+
     const setSizeValueFn = (val) => {if(val !== ''){setSizeValue(val)}}
     const setHeightValueFn = (val) => {if(val !== ''){setHeightValue(val)}}
     const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
     const setLengthValueFn = (val) => {if(val !== ''){setLengthValue(val)}}
-    const setWeightValueFn = (val) => {if(val !== ''){setWeightValue(val)}}
+    
+    const setWeightValueFn = (e) => {
+        setWeightValue(e.target.value)
+        setErrorMsg(false)
 
+        if(e.target.value === ''){
+            setErrorMsg(true)
+        }
+    }
+
+    console.log(weightValue)
 
 
     return (
     <>
-        {/* <h1>{inputError.message}</h1> */}
         <div className="form-li">
             <label htmlFor="sku">SKU</label>
             <input type="text" id='sku' name="sku" onChange={handleInputChange} value={inputValue.sku} />
@@ -71,9 +81,8 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="size">Size (MB)</label>
-                <input type="number" id='size' onChange={(e) => setSizeValueFn(e.target.value)} value={sizeValue} />
+                <input type="number" id='size' name="size" onChange={setSizeValueFn} value={sizeValue}/>
             </div>
-                <p>Please, provide size</p>
         </>
         }
 
@@ -91,7 +100,6 @@ export default function Forms() {
                 <label htmlFor="length">Length (CM)</label>
                 <input type="number" id='length'  onChange={(e) => setLengthValueFn(e.target.value)} value={lengthValue}/>
             </div>
-                <p>Please, provide dimensions</p>
         </>
         }
 
@@ -99,11 +107,11 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="weight">Weight (KG)</label>
-                <input type="number" id='weight' onChange={(e) => setWeightValueFn(e.target.value)} value={weightValue} />
+                <input type="number" id='weight' name="weight" onChange={setWeightValueFn} value={weightValue} />
             </div>
-                <p>Please, provide weight</p>
         </>
         }
+        {errorMsg && <p className="form-error"> Please, provide the data of indicated type </p>}
     </>
     )
 }
