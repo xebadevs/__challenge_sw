@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function AddProduct() {
@@ -19,12 +19,14 @@ export default function AddProduct() {
         height: '',
         width: '',
         length: '',
+        reg_num: /^[0-9\s]{1,5}$/,
         error: 'Please, provide the data of indicated type'
     })
     
     const [typeSwitcher, setTypeSwitcher] = useState('DVD')
     const [inputError, setInputError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(false)
+    const [errorMsg, setErrorMsg] = useState(false);
+    const [formValid, setFormValid] = useState({formUpper: false, formLower: false})
 
     const handleInputChange = (e) => {
         setInputValue({
@@ -50,13 +52,14 @@ export default function AddProduct() {
 
     const validate = () => {
         if(
-            inputValue.reg_sku.test(inputValue.sku) &&
-            inputValue.reg_name.test(inputValue.name) &&
-            inputValue.price !== ''
-            ){
-                alert('todo viento')
+        inputValue.reg_sku.test(inputValue.sku) &&
+        inputValue.reg_name.test(inputValue.name) &&
+        inputValue.price !== ''
+        ){
+            setFormValid({...formValid, formUpper: true})
         }else{
-            alert('todo mal')
+            setFormValid({...formValid, formUpper: false})
+            setInputError(true)
         }
     }
 
@@ -64,6 +67,12 @@ export default function AddProduct() {
         e.preventDefault()
         validate()
     }
+
+    useEffect(() => {
+        if(formValid.formUpper){
+            navigate('/')
+        }
+    })
 
     return (
         <form id="product_form" className="form-main" onSubmit={sendForm}>
