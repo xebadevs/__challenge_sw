@@ -8,19 +8,17 @@ export default function Forms() {
         error: 'Please, submit required data',
     })
 
-    const [typeSwitcher, setTypeSwitcher] = useState('DVD')
-    const [heightValue, setHeightValue] = useState('')
-    const [widthValue, setWidthValue] = useState('')
-    const [lengthValue, setLengthValue] = useState('')
-    const [weightValue, setWeightValue] = useState('')
-    const [inputError, setInputError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(false)
-
     const [numValue, setNumValue] = useState({
         size: '',
-        weight: ''
+        weight: '',
+        height: '',
+        width: '',
+        length: ''
     })
-
+    
+    const [typeSwitcher, setTypeSwitcher] = useState('DVD')
+    const [inputError, setInputError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false)
 
     const handleInputChange = (e) => {
         setInputValue({
@@ -30,20 +28,6 @@ export default function Forms() {
         setInputError(false)   
         if(e.target.value === ''){
             setInputError(true)
-        }
-    }
-
-
-    const setHeightValueFn = (val) => {if(val !== ''){setHeightValue(val)}}
-    const setWidthValueFn = (val) => {if(val !== ''){setWidthValue(val)}}
-    const setLengthValueFn = (val) => {if(val !== ''){setLengthValue(val)}}
-    
-    const setWeight = (e) => {
-        setWeightValue(e.target.value)
-        setErrorMsg(false)
-
-        if(e.target.value === ''){
-            setErrorMsg(true)
         }
     }
 
@@ -100,15 +84,15 @@ export default function Forms() {
         <>
             <div className="form-li">
                 <label htmlFor="height">Height (CM)</label>
-                <input type="number" id='height'  onChange={(e) => setHeightValueFn(e.target.value)} value={heightValue}/>
+                <input type="number" id='height' name="height"  onChange={setNumber} value={numValue.height}/>
             </div>
             <div className="form-li">
                 <label htmlFor="width">Width (CM)</label>
-                <input type="number" id='width'  onChange={(e) => setWidthValueFn(e.target.value)} value={widthValue}/>
+                <input type="number" id='width' name="width" onChange={setNumber} value={numValue.width}/>
             </div>
             <div className="form-li">
                 <label htmlFor="length">Length (CM)</label>
-                <input type="number" id='length'  onChange={(e) => setLengthValueFn(e.target.value)} value={lengthValue}/>
+                <input type="number" id='length' name="length" onChange={setNumber} value={numValue.length}/>
             </div>
         </>
         }
